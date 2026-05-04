@@ -1,0 +1,7 @@
+Column Name,Data Type,Defined Length,Nulls Allowed,Null Count,Percentage Populated,Distinct Value Count,Minimum Value,Maximum Value,Max Actual Length
+transaction_id,object,32,Yes,0,100.00%,14,07f21743663aacb7d212c286d47a14de,f192fca27d438c053db425fade152d66,32
+transaction_status,object,4,Yes,0,100.00%,1,PAID,PAID,4
+transaction_at,object,24,Yes,0,100.00%,14,2024-05-01T05:07:30.374Z,2024-05-21T09:47:11.535Z,24
+transaction_location,object,19,Yes,0,100.00%,6,ADITYAWARMAN,SUNSET ROAD,19
+timezone_transaction,object,13,Yes,0,100.00%,2,Asia/Jakarta,Asia/Makassar,13
+transaction_type,object,6,Yes,0,100.00%,2,NEW,REJOIN,6

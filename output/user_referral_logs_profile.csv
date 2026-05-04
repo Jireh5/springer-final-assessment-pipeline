@@ -1,0 +1,6 @@
+Column Name,Data Type,Defined Length,Nulls Allowed,Null Count,Percentage Populated,Distinct Value Count,Minimum Value,Maximum Value,Max Actual Length
+id,int64,,Yes,0,100.00%,96,1,96,
+user_referral_id,object,32.0,Yes,0,100.00%,78,119330b602a0e3bc0b66487b6c53ec19,ffea2078bee21f79f199256757e5d578,32.0
+source_transaction_id,object,32.0,Yes,79,17.71%,17,0d5745a60be9f0d9163c99c91fd61efc,de0d476b360046c0d079d5f8fcb77c00,32.0
+created_at,object,20.0,Yes,0,100.00%,96,2024-03-08T11:33:50Z,2024-07-10T08:51:11Z,20.0
+is_reward_granted,bool,,Yes,0,100.00%,2,False,True,

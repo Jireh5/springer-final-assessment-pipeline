@@ -1,0 +1,12 @@
+Column Name,Data Type,Defined Length,Nulls Allowed,Null Count,Percentage Populated,Distinct Value Count,Minimum Value,Maximum Value,Max Actual Length
+referral_at,object,20.0,Yes,0,100.00%,44,2024-03-08T11:31:24Z,2024-05-24T04:57:33Z,20.0
+referral_id,object,32.0,Yes,0,100.00%,46,1f44ffca9257eefe62892409bce4b704,fcb804c8ff24e5b2974a7e965ebea5e8,32.0
+referee_id,object,32.0,Yes,3,93.48%,37,04aec3adea13099cb24c4cc784f05f3d,f6507a982bde1dcda0ce0867ceac66f6,32.0
+referee_name,object,32.0,Yes,3,93.48%,35,069396bf68713451107ed621971b8fd3,feb4d885f99957d87b2e8eb1fd05b193,32.0
+referee_phone,object,32.0,Yes,0,100.00%,33,0520c1cc85cbd43be086d6067e316e39,ff6a10e68ce4c4a56e3c19238619f828,32.0
+referral_reward_id,float64,,Yes,38,17.39%,3,1.0,3.0,
+referral_source,object,17.0,Yes,0,100.00%,3,Draft Transaction,User Sign Up,17.0
+referrer_id,object,32.0,Yes,13,71.74%,13,192befbbd8b97260e28db080a661578c,f2de40c8394f4ea9a6aa49965380dd8f,32.0
+transaction_id,object,32.0,Yes,13,71.74%,27,07f21743663aacb7d212c286d47a14de,f192fca27d438c053db425fade152d66,32.0
+updated_at,object,20.0,Yes,0,100.00%,40,2024-04-29T04:04:15Z,2024-05-24T04:57:33Z,20.0
+user_referral_status_id,int64,,Yes,0,100.00%,3,1,3,
