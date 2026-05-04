@@ -20,6 +20,7 @@ docker build -t springer_data_pipeline .
 (This command mounts your local output folder so the resulting CSV is saved to your machine):  
 docker run -v "${PWD}/output:/app/output" springer_data_pipeline
 
+3. see output folder for the profile results and the referral_report.csv as the final report
 ## Business Logic
 all conditions met and commented on your_script.py
 
