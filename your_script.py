@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
+from pyspark.sql.window import Window
 
 # Initialize Spark session
 spark = SparkSession.builder.appName("Springer_Referral_Pipeline").getOrCreate()
@@ -61,6 +62,7 @@ df_base = df_base.withColumn(
     F.from_utc_timestamp(F.col("ur.referral_at"), F.col("referrer.timezone_homeclub"))
 )
 
+reward_val = F.regexp_extract(F.col("rr.reward_value").cast("string"), r"(\d+)", 1).cast("int")
 # Business Logic
 valid_cond_1 = (
     (F.regexp_extract(F.col("rr.reward_value").cast("string"), r"(\d+)", 1).cast("int") > 0) & # 1. The reward value is greater than 0
@@ -86,7 +88,6 @@ df_final = df_base.withColumn("is_business_logic_valid",
 
 # Select Output Columns
 report_df = df_final.select(
-    F.coalesce(F.col("url.id").cast("int"), F.lit(0)).alias("referral_details_id"),
     F.col("ur.referral_id"),
     F.col("ur.referral_source"),
     F.col("referral_source_category"),
@@ -99,7 +100,7 @@ report_df = df_final.select(
     F.col("ur.referee_name"),
     F.col("ur.referee_phone"),
     F.col("urs.description").alias("referral_status"),
-    F.lit(30).alias("num_reward_days"), 
+    reward_val.alias("num_reward_days"), 
     F.col("pt.transaction_id"),
     F.col("pt.transaction_status"),
     F.col("transaction_at"),
@@ -108,11 +109,17 @@ report_df = df_final.select(
     F.col("ur.updated_at"),
     F.col("url.created_at").alias("reward_granted_at"),
     F.col("is_business_logic_valid")
-)
+).dropDuplicates(["referral_id"])
 
 # Handling NULLS & DUPLICATES
 report_df = report_df.na.drop(how="all")
 report_df = report_df.dropDuplicates(["referral_id"])
+
+w = Window.orderBy("referral_id")
+report_df = report_df.withColumn("referral_details_id", F.row_number().over(w) + 100)
+
+cols = ["referral_details_id"] + [c for c in report_df.columns if c != "referral_details_id"]
+report_df = report_df.select(cols)
 
 # Convert every column to string, strip spaces, and definitively crush the word "null"
 for c in report_df.columns:
